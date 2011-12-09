@@ -1,19 +1,23 @@
-def is_prime?(num, trivial = false)
-  end_val = trivial ? 5 : Math.sqrt(num).ceil
-  (2..end_val).each do |n|
-    return false if num % n == 0
+def is_prime?(number)
+  (2..Math.sqrt(number).floor).none? do |x|
+    number % x == 0
   end
-  return true
 end
 
-def get_prime_factors(num)
-  # Uncomment if we need all prime factors
-  # factors = []
-  num.downto(2) do |n|
-    # factors << n if num % n == 0 && is_prime?(n)
-    return n if num % n == 0 && is_prime?(n)
+def first_prime_factor(number)
+  (2..number).each do |x|
+    return x if number % x == 0 && is_prime?(x)
   end
-  # factors
 end
 
-puts get_prime_factors(600851475143)
+def prime_factors(factors)
+  factors = [1, factors] if factors.class == Fixnum || factors.class == Bignum
+  return factors if is_prime?(factors.last)
+  n = factors.pop
+  f = first_prime_factor(n)
+  factors.push f
+  factors.push n/f
+  return prime_factors(factors)
+end
+
+puts prime_factors(600851475143).last
