@@ -6,7 +6,9 @@
 
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 var max uint32 = 1000
 
