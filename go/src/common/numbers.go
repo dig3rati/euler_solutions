@@ -6,10 +6,14 @@
 package common
 
 // Generates the fibonacci sequence below the `stop` number while sending the result to `out` channel
-func Fibonacci(start uint32, second uint32, max uint32, out chan<- uint32) {
-	out <- start
-	defer close(out)
-	for f, s := start, second; s < max; f, s = s, f+s {
-		out <- s
-	}
+func Fibonacci(start uint32, second uint32, max uint32) chan uint32 {
+	out := make(chan uint32)
+	go func() {
+		out <- start
+		defer close(out)
+		for f, s := start, second; s < max; f, s = s, f+s {
+			out <- s
+		}
+	}()
+	return out
 }

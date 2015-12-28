@@ -6,23 +6,19 @@
  * find the sum of the even-valued terms.
  */
 
-package main
+package problem_2
 
 import (
 	"common"
-	"fmt"
 )
 
-var max uint32 = 4000000
-
-func main() {
-	out := make(chan uint32)
-	go common.Fibonacci(uint32(1), uint32(2), max, out)
+func SumOfFibonacciSeq(condition func(uint32) bool, upto uint32) uint32 {
+	seq := common.Fibonacci(uint32(1), uint32(2), upto)
 	var sum uint32
-	for n := range out {
-		if n%2 == 0 {
+	for n := range seq {
+		if condition(n) {
 			sum += n
 		}
 	}
-	fmt.Println("Sum: ", sum)
+	return sum
 }
