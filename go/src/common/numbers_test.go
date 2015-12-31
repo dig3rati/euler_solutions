@@ -71,7 +71,7 @@ func TestPrimeFactors(t *testing.T) {
 		out := PrimeFactors(c.number)
 		for _, w := range c.want {
 			if w != <-out {
-				t.Errorf("Failed to check case: ", c)
+				t.Errorf("Failed to check case: %+v", c)
 			}
 		}
 	}
