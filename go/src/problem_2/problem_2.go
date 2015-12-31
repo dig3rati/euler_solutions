@@ -12,9 +12,9 @@ import (
 	"common"
 )
 
-func SumOfFibonacciSeq(condition func(uint32) bool, upto uint32) uint32 {
-	seq := common.Fibonacci(uint32(1), uint32(2), upto)
-	var sum uint32
+func SumOfFibonacciSeq(condition func(uint64) bool, upto uint64) uint64 {
+	seq := common.FibonacciSeq(uint64(1), uint64(2), upto)
+	var sum uint64
 	for n := range seq {
 		if condition(n) {
 			sum += n

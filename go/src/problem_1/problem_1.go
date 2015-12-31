@@ -8,9 +8,9 @@
 
 package problem_1
 
-func SumOfMultiples(multiples []uint32, upto uint32) uint32 {
-	var sum uint32
-	for num := uint32(1); num < upto; num++ {
+func SumOfMultiples(multiples []uint64, upto uint64) uint64 {
+	var sum uint64
+	for num := uint64(1); num < upto; num++ {
 		for _, m := range multiples {
 			if num%m == 0 {
 				sum += num
