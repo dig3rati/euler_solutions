@@ -91,3 +91,13 @@ func LCM(a, b uint64) uint64 {
 	}
 	return mul / a
 }
+
+// Sum of sequence of number from 1 to n
+func SumOfNaturalNumbers(n uint64) uint64 {
+	return n * (n + 1) / 2
+}
+
+// Sum of sequence of squares of numbers from 1 to n
+func SumOfNaturalSquares(n uint64) uint64 {
+	return n * (n + 1) * (2*n + 1) / 6
+}
