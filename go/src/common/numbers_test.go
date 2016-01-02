@@ -17,7 +17,7 @@ func TestFibonacciSeq(t *testing.T) {
 		out := FibonacciSeq(c.start, c.second, c.upto)
 		for _, w := range c.want {
 			if w != <-out {
-				t.Errorf("Failed to check case: %+v", c)
+				t.Errorf("Failed to check case: %+v\n", c)
 			}
 		}
 	}
@@ -37,7 +37,7 @@ func TestIsPrime(t *testing.T) {
 	}
 	for _, c := range cases {
 		if IsPrime(c.number) != c.want {
-			t.Errorf("Failed to check case: %+v", c)
+			t.Errorf("Failed to check case: %+v\n", c)
 		}
 	}
 }
@@ -54,7 +54,7 @@ func TestPrimeSeq(t *testing.T) {
 		out := PrimeSeq(c.upto)
 		for _, w := range c.want {
 			if w != <-out {
-				t.Errorf("Failed to check case: %+v", c)
+				t.Errorf("Failed to check case: %+v\n", c)
 			}
 		}
 	}
@@ -71,8 +71,39 @@ func TestPrimeFactors(t *testing.T) {
 		out := PrimeFactors(c.number)
 		for _, w := range c.want {
 			if w != <-out {
-				t.Errorf("Failed to check case: %+v", c)
+				t.Errorf("Failed to check case: %+v\n", c)
 			}
+		}
+	}
+}
+
+func TestGCD(t *testing.T) {
+	cases := []struct {
+		a, b uint64
+		want uint64
+	}{
+		{2, 3, 1},
+		{7, 21, 7},
+	}
+	for _, c := range cases {
+		if GCD(c.a, c.b) != c.want {
+			t.Errorf("Failed to check case: %+v\n", c)
+		}
+	}
+}
+
+func TestLCM(t *testing.T) {
+	cases := []struct {
+		a, b uint64
+		want uint64
+	}{
+		{2, 3, 6},
+		{65, 15, 195},
+		{3, 21, 21},
+	}
+	for _, c := range cases {
+		if LCM(c.a, c.b) != c.want {
+			t.Errorf("Failed to check case: %+v\n", c)
 		}
 	}
 }

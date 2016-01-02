@@ -68,3 +68,26 @@ func PrimeFactors(number uint64) chan uint64 {
 	}()
 	return out
 }
+
+// GCD of given numbers
+func GCD(a, b uint64) uint64 {
+	var tmp uint64
+	for b != 0 {
+		tmp = a % b
+		a = b
+		b = tmp
+	}
+	return a
+}
+
+// LCM of given numbers
+func LCM(a, b uint64) uint64 {
+	mul := a * b
+	var tmp uint64
+	for b != 0 {
+		tmp = a % b
+		a = b
+		b = tmp
+	}
+	return mul / a
+}
