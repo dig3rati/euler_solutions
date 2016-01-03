@@ -38,3 +38,18 @@ func TestIsPalidrome(t *testing.T) {
 		}
 	}
 }
+
+func TestSumOfDigits(t *testing.T) {
+	cases := []struct {
+		n    string
+		want uint64
+	}{
+		{"123", 6},
+		{"123456789", 45},
+	}
+	for _, c := range cases {
+		if SumOfDigits(c.n) != c.want {
+			t.Errorf("Failed to check case: %+v\n%+v\n", c, SumOfDigits(c.n))
+		}
+	}
+}

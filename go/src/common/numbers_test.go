@@ -107,3 +107,16 @@ func TestLCM(t *testing.T) {
 		}
 	}
 }
+
+func TestFactorial(t *testing.T) {
+	cases := []struct {
+		n, want uint64
+	}{
+		{10, 3628800},
+	}
+	for _, c := range cases {
+		if Factorial(c.n) != c.want {
+			t.Errorf("Failed to check case: %+v\n", c)
+		}
+	}
+}

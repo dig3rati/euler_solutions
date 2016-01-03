@@ -3,6 +3,7 @@ package common
 import (
 	"fmt"
 	"math"
+	"strconv"
 )
 
 // Reverses the input string
@@ -36,4 +37,14 @@ func PalindromeSeq(digits uint64) chan uint64 {
 		}
 	}()
 	return out
+}
+
+func SumOfDigits(n string) uint64 {
+	bytes := []byte(n)
+	var sum uint64
+	for _, b := range bytes {
+		v, _ := strconv.Atoi(string(b))
+		sum += uint64(v)
+	}
+	return sum
 }

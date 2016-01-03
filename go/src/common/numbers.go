@@ -101,3 +101,12 @@ func SumOfNaturalNumbers(n uint64) uint64 {
 func SumOfNaturalSquares(n uint64) uint64 {
 	return n * (n + 1) * (2*n + 1) / 6
 }
+
+// Returns the factorial of a given number
+func Factorial(n uint64) uint64 {
+	var prod uint64 = 1
+	for i := n; i > 0; i-- {
+		prod *= i
+	}
+	return prod
+}
