@@ -103,10 +103,12 @@ func SumOfNaturalSquares(n uint64) uint64 {
 }
 
 // Returns the factorial of a given number
-func Factorial(n uint64) uint64 {
-	var prod uint64 = 1
-	for i := n; i > 0; i-- {
-		prod *= i
+func Factorial(n *big.Int) *big.Int {
+	var prod *big.Int = big.NewInt(1)
+	for i := n; i.Cmp(big.NewInt(0)) > 0; i.Sub(i, big.NewInt(1)) {
+		tmp := new(big.Int)
+		tmp.Mul(prod, i)
+		prod = tmp
 	}
 	return prod
 }

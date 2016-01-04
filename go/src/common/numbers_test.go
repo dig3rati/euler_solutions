@@ -2,6 +2,7 @@ package common
 
 import (
 	"math"
+	"math/big"
 	"testing"
 )
 
@@ -110,12 +111,12 @@ func TestLCM(t *testing.T) {
 
 func TestFactorial(t *testing.T) {
 	cases := []struct {
-		n, want uint64
+		n, want *big.Int
 	}{
-		{10, 3628800},
+		{big.NewInt(10), big.NewInt(3628800)},
 	}
 	for _, c := range cases {
-		if Factorial(c.n) != c.want {
+		if c.want.Cmp(Factorial(c.n)) != 0 {
 			t.Errorf("Failed to check case: %+v\n", c)
 		}
 	}
