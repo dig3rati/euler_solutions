@@ -58,7 +58,7 @@ func TestRangeOfNthPrime(t *testing.T) {
 	}
 }
 
-func TestPrimeSeq(t *testing.T) {
+func TestPrimeSieveOfEratV1(t *testing.T) {
 	cases := []struct {
 		upto uint64
 		want []uint64
@@ -67,7 +67,7 @@ func TestPrimeSeq(t *testing.T) {
 		{10, []uint64{2, 3, 5, 7}},
 	}
 	for _, c := range cases {
-		out := PrimeSeq(c.upto)
+		out := PrimeSieveOfEratV1(c.upto)
 		for _, w := range c.want {
 			if w != <-out {
 				t.Errorf("Failed to check case: %+v\n", c)

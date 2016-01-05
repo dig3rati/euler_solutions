@@ -41,7 +41,7 @@ func RangeOfNthPrime(n uint64) (uint64, uint64) {
 // Generates sequence of prime numbers below the given number
 // Based on Sieve of Eratosthenes
 // https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
-func PrimeSeq(upto uint64) chan uint64 {
+func PrimeSieveOfEratV1(upto uint64) chan uint64 {
 	out := make(chan uint64)
 	go func() {
 		defer close(out)
@@ -66,7 +66,7 @@ func PrimeSeq(upto uint64) chan uint64 {
 
 // Returns the prime factors for a given number
 func PrimeFactors(number uint64) chan uint64 {
-	primes := PrimeSeq(number)
+	primes := PrimeSieveOfEratV1(number)
 	out := make(chan uint64)
 	go func() {
 		defer close(out)

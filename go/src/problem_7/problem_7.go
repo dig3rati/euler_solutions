@@ -6,7 +6,7 @@ import (
 
 func NthPrime(n uint64) uint64 {
 	_, below := common.RangeOfNthPrime(n)
-	out := common.PrimeSeq(below)
+	out := common.PrimeSieveOfEratV1(below)
 	var nth_prime, count uint64
 	for p := range out {
 		count++
