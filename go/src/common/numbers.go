@@ -69,6 +69,12 @@ func RangeOfNthPrime(n uint64) (uint64, uint64) {
 	return above, below
 }
 
+// Returns an approximate number of primes below the given number
+// Based on https://primes.utm.edu/howmany.html
+func NumberOfPrimes(below uint64) uint64 {
+	return uint64(float64(below) / (math.Log(float64(below)) - 1))
+}
+
 // Generates sequence of prime numbers below the given number
 // Based on Sieve of Eratosthenes
 // https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes

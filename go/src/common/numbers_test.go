@@ -94,6 +94,20 @@ func TestRangeOfNthPrime(t *testing.T) {
 	}
 }
 
+func TestNumberOfPrimes(t *testing.T) {
+	cases := []struct {
+		below, want uint64
+	}{
+		{10, 7},
+		{100, 27},
+	}
+	for _, c := range cases {
+		if NumberOfPrimes(c.below) != c.want {
+			t.Errorf("Failed to check case: %+v\n", c)
+		}
+	}
+}
+
 func TestPrimeSieveOfEratV1(t *testing.T) {
 	cases := []struct {
 		upto uint64

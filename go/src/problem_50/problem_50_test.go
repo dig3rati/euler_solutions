@@ -5,5 +5,5 @@ import (
 )
 
 func TestConsecutivePrimeSum(t *testing.T) {
-	t.Logf("Prime number %+v, below one-million, can be written as the sum of the most consecutive primes", ConsecutivePrimeSum(100))
+	t.Logf("Prime number %+v, below one-million, can be written as the sum of the most consecutive primes", ConsecutivePrimeSum(1000000))
 }
