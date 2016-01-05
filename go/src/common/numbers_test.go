@@ -43,6 +43,21 @@ func TestIsPrime(t *testing.T) {
 	}
 }
 
+func TestRangeOfNthPrime(t *testing.T) {
+	cases := []struct {
+		n    uint64
+		want struct{ above, below uint64 }
+	}{
+		{n: 10, want: struct{ above, below uint64 }{20, 30}},
+	}
+	for _, c := range cases {
+		a, b := RangeOfNthPrime(c.n)
+		if c.want.above != a || c.want.below != b {
+			t.Errorf("Failed to check case: %+v\n", c)
+		}
+	}
+}
+
 func TestPrimeSeq(t *testing.T) {
 	cases := []struct {
 		upto uint64
