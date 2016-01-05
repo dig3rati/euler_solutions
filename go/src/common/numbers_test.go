@@ -3,6 +3,7 @@ package common
 import (
 	"math"
 	"math/big"
+	"reflect"
 	"testing"
 )
 
@@ -24,6 +25,22 @@ func TestFibonacciSeq(t *testing.T) {
 	}
 }
 
+func TestCircularNumbers(t *testing.T) {
+	cases := []struct {
+		n    uint64
+		want []uint64
+	}{
+		{123, []uint64{123, 231, 312}},
+		{10, []uint64{10, 1}},
+		{1, []uint64{1}},
+	}
+	for _, c := range cases {
+		if !reflect.DeepEqual(CircularNumbers(c.n), c.want) {
+			t.Errorf("Failed to check case: %+v\n", c)
+		}
+	}
+}
+
 func TestIsPrime(t *testing.T) {
 	cases := []struct {
 		number uint64
@@ -38,6 +55,25 @@ func TestIsPrime(t *testing.T) {
 	}
 	for _, c := range cases {
 		if IsPrime(c.number) != c.want {
+			t.Errorf("Failed to check case: %+v\n", c)
+		}
+	}
+}
+
+func TestIsCircularPrime(t *testing.T) {
+	cases := []struct {
+		n    uint64
+		want bool
+	}{
+		{2, true},
+		{79, true},
+		{197, true},
+		{0, false},
+		{10, false},
+		{1, false},
+	}
+	for _, c := range cases {
+		if IsCircularPrime(c.n) != c.want {
 			t.Errorf("Failed to check case: %+v\n", c)
 		}
 	}

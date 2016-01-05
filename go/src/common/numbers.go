@@ -6,8 +6,10 @@
 package common
 
 import (
+	"fmt"
 	"math"
 	"math/big"
+	"strconv"
 )
 
 // Generates the fibonacci sequence below the `max` number while sending the result to channel
@@ -23,9 +25,38 @@ func FibonacciSeq(start uint64, second uint64, max uint64) chan uint64 {
 	return out
 }
 
+// Returns the circular numbers for a given number
+func CircularNumbers(n uint64) []uint64 {
+	bytes := []byte(fmt.Sprintf("%d", n))
+	nums := make([]uint64, 0, len(bytes))
+	nums = append(nums, n)
+	for {
+		var ld byte
+		ld, bytes = bytes[0], bytes[1:]
+		bytes = append(bytes, ld)
+		cn, _ := strconv.ParseUint(string(bytes), 10, 64)
+		if cn == n {
+			break
+		} else {
+			nums = append(nums, cn)
+		}
+	}
+	return nums
+}
+
 // Checks if the given number is a prime number
 func IsPrime(number uint64) bool {
 	return big.NewInt(int64(number)).ProbablyPrime(2)
+}
+
+// Checks if the given number is a circular prime
+func IsCircularPrime(n uint64) bool {
+	for _, i := range CircularNumbers(n) {
+		if !IsPrime(i) {
+			return false
+		}
+	}
+	return true
 }
 
 // Returns the range between which nth prime number exists
