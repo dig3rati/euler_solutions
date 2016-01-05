@@ -28,6 +28,16 @@ func IsPrime(number uint64) bool {
 	return big.NewInt(int64(number)).ProbablyPrime(2)
 }
 
+// Returns the range between which nth prime number exists
+// Based on https://en.wikipedia.org/wiki/Prime_number_theorem
+func RangeOfNthPrime(n uint64) (uint64, uint64) {
+	ln := math.Log(float64(n))
+	lln := math.Log(ln)
+	above := n * uint64(ln+lln-1)
+	below := n * uint64(ln+lln)
+	return above, below
+}
+
 // Generates sequence of prime numbers below the given number
 // Based on Sieve of Eratosthenes
 // https://en.wikipedia.org/wiki/Sieve_of_Eratosthenes
