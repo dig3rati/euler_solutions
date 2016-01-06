@@ -2,7 +2,7 @@ package problem_47
 
 import (
 	"common"
-	"fmt"
+	// "fmt"
 	"math"
 )
 
@@ -30,7 +30,7 @@ func DistinctPrimeFactors(num_factors int) []uint64 {
 			}
 		}
 		ks := keys(pfs)
-		fmt.Println(i, ks, fdpf)
+		// fmt.Println(i, ks, fdpf)
 		if len(ks) == num_factors {
 			if i-fdpf == 1 {
 				return []uint64{fdpf, i}
