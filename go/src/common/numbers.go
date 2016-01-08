@@ -82,10 +82,19 @@ func PrimeSieveOfEratV1(upto uint64) chan uint64 {
 	out := make(chan uint64)
 	go func() {
 		defer close(out)
-		nots := make([]bool, upto+1)
+		var slen uint64
+		if upto > math.MaxInt32 {
+			slen = uint64(math.MaxInt32)
+		} else {
+			slen = upto + 1
+		}
+		nots := make([]bool, slen)
 		upto_sqrt := uint64(math.Sqrt(float64(upto)))
 		for i := uint64(2); i <= upto_sqrt; i++ {
 			for j, k := i*i, uint64(1); j <= upto; j, k = i*i+k*i, k+uint64(1) {
+				if j > uint64(len(nots)) {
+					nots = append(nots, make([]bool, upto-slen+1)...)
+				}
 				nots[j] = true
 			}
 		}
