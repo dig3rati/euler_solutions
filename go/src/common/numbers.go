@@ -168,3 +168,21 @@ func Factorial(n *big.Int) *big.Int {
 	}
 	return prod
 }
+
+// Returns the Power of x ^ y
+func Pow(x *big.Int, y *big.Int) *big.Int {
+	var pow *big.Int = big.NewInt(1)
+	for i := big.NewInt(1); i.Cmp(y) <= 0; i.Add(i, big.NewInt(1)) {
+		pow.Mul(pow, x)
+	}
+	return pow
+}
+
+// Returns the sum of self powers eg., 1^1 + 2^2 + 3^3 ... upto n ^ n
+func SumOfSelfPowers(from *big.Int, to *big.Int) *big.Int {
+	var sum *big.Int = big.NewInt(0)
+	for i := from; i.Cmp(to) <= 0; i.Add(i, big.NewInt(1)) {
+		sum.Add(sum, Pow(i, i))
+	}
+	return sum
+}

@@ -186,3 +186,33 @@ func TestFactorial(t *testing.T) {
 		}
 	}
 }
+
+func TestPow(t *testing.T) {
+	cases := []struct {
+		x, y *big.Int
+		want *big.Int
+	}{
+		{big.NewInt(1), big.NewInt(1), big.NewInt(1)},
+		{big.NewInt(10), big.NewInt(10), big.NewInt(10000000000)},
+		{big.NewInt(10), big.NewInt(2), big.NewInt(100)},
+	}
+	for _, c := range cases {
+		if c.want.Cmp(Pow(c.x, c.y)) != 0 {
+			t.Errorf("Failed to check case: %+v, %+v\n", c, Pow(c.x, c.y))
+		}
+	}
+}
+
+func TestSumOfSelfPowers(t *testing.T) {
+	cases := []struct {
+		from, to *big.Int
+		want     *big.Int
+	}{
+		{big.NewInt(1), big.NewInt(10), big.NewInt(10405071317)},
+	}
+	for _, c := range cases {
+		if c.want.Cmp(SumOfSelfPowers(c.from, c.to)) != 0 {
+			t.Errorf("Failed to check case: %+v\n", c)
+		}
+	}
+}
