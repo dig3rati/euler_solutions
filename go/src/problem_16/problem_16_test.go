@@ -11,7 +11,7 @@ func TestProblem16(t *testing.T) {
 		want uint64
 	}{
 		{big.NewInt(2), big.NewInt(15), 26},
-		{big.NewInt(2), big.NewInt(1000), 0},
+		{big.NewInt(2), big.NewInt(1000), 1366},
 	}
 	for _, c := range checks {
 		sum := PowerDigitSum(c.x, c.y)
