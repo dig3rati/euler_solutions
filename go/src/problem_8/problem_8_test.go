@@ -2,6 +2,7 @@ package problem_8
 
 import (
 	"regexp"
+	"strconv"
 	"testing"
 )
 
@@ -31,8 +32,26 @@ var str = `
 func TestProblem8(t *testing.T) {
 	r := regexp.MustCompile("[^0-9]")
 	out := r.ReplaceAllString(str, "")
-	a := AdjacentDigitOp(4, []byte(out), func(a, b byte) uint64 {
-		return uint64(uint8(a) * uint8(b))
-	})
-	t.Errorf("a: %v S: %+v", a, out)
+	checks := []struct {
+		digits uint64
+		expect uint64
+	}{
+		{4, 5832},
+		{13, 23514624000},
+	}
+	for _, c := range checks {
+		prod := MaxAdjacentDigitOp(c.digits, []byte(out), func(bytes []byte) uint64 {
+			p := uint64(1)
+			for _, b := range bytes {
+				d, _ := strconv.ParseUint(string(b), 10, 8)
+				p *= d
+			}
+			return p
+		})
+		t.Logf("Greatest product of %d adjacent digits of a %d digit number is: %+v",
+			c.digits, len(out), prod)
+		if c.expect != prod {
+			t.Errorf("Expectation failed:\nExpected: %+v\nGot: %+v\n", c.expect, prod)
+		}
+	}
 }
