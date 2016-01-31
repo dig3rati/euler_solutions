@@ -234,3 +234,18 @@ func TestSumOfSelfPowers(t *testing.T) {
 		}
 	}
 }
+
+func TestNumberOfDigits(t *testing.T) {
+	cases := []struct {
+		n    *big.Int
+		want int
+	}{
+		{big.NewInt(1234567890), 10},
+		{big.NewInt(1), 1},
+	}
+	for _, c := range cases {
+		if c.want != NumberOfDigits(c.n) {
+			t.Errorf("Failed to check case: %+v\n", c)
+		}
+	}
+}

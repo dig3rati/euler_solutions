@@ -200,3 +200,8 @@ func SumOfSelfPowers(from *big.Int, to *big.Int) *big.Int {
 	}
 	return sum
 }
+
+// Returns number of digits in a number
+func NumberOfDigits(n *big.Int) int {
+	return len(n.String())
+}
