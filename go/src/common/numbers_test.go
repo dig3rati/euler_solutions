@@ -7,6 +7,24 @@ import (
 	"testing"
 )
 
+func TestPythogoreanTripletSeq(t *testing.T) {
+	cases := []struct {
+		want []*PythogoreanTriplet
+	}{
+		{[]*PythogoreanTriplet{&PythogoreanTriplet{3, 4, 5}}},
+		{[]*PythogoreanTriplet{&PythogoreanTriplet{3, 4, 5}, &PythogoreanTriplet{5, 12, 13}}},
+	}
+	for _, c := range cases {
+		out := PythogoreanTripletSeq()
+		for _, triplet := range c.want {
+			got := <-out
+			if !reflect.DeepEqual(got, triplet) {
+				t.Errorf("Failed to check case: %+v\n", c)
+			}
+		}
+	}
+}
+
 func TestFibonacciSeq(t *testing.T) {
 	cases := []struct {
 		start, second, upto uint64

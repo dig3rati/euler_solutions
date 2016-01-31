@@ -12,6 +12,27 @@ import (
 	"strconv"
 )
 
+type PythogoreanTriplet struct {
+	base, height uint64
+	hypotenuse   uint64
+}
+
+// Generates a sequence of pythogorean triplet
+// https://en.wikipedia.org/wiki/Formulas_for_generating_Pythagorean_triples
+func PythogoreanTripletSeq() chan *PythogoreanTriplet {
+	out := make(chan *PythogoreanTriplet)
+	go func() {
+		for i := uint64(1); true; i++ {
+			pt := new(PythogoreanTriplet)
+			pt.base = uint64(2*i + 1)
+			pt.height = uint64(pt.base*i + i)
+			pt.hypotenuse = uint64(math.Sqrt(float64(pt.base*pt.base + pt.height*pt.height)))
+			out <- pt
+		}
+	}()
+	return out
+}
+
 // Generates the fibonacci sequence below the `max` number while sending the result to channel
 func FibonacciSeq(start uint64, second uint64, max uint64) chan uint64 {
 	out := make(chan uint64)
