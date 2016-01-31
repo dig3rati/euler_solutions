@@ -12,7 +12,7 @@ func TestPythogoreanTripletSeq(t *testing.T) {
 		want []*PythogoreanTriplet
 	}{
 		{[]*PythogoreanTriplet{&PythogoreanTriplet{3, 4, 5}}},
-		{[]*PythogoreanTriplet{&PythogoreanTriplet{3, 4, 5}, &PythogoreanTriplet{5, 12, 13}}},
+		{[]*PythogoreanTriplet{&PythogoreanTriplet{3, 4, 5}, &PythogoreanTriplet{15, 8, 17}}},
 	}
 	for _, c := range cases {
 		out := PythogoreanTripletSeq()

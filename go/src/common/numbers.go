@@ -13,8 +13,8 @@ import (
 )
 
 type PythogoreanTriplet struct {
-	base, height uint64
-	hypotenuse   uint64
+	Base, Height uint64
+	Hypotenuse   uint64
 }
 
 // Generates a sequence of pythogorean triplet
@@ -23,11 +23,19 @@ func PythogoreanTripletSeq() chan *PythogoreanTriplet {
 	out := make(chan *PythogoreanTriplet)
 	go func() {
 		for i := uint64(1); true; i++ {
-			pt := new(PythogoreanTriplet)
-			pt.base = uint64(2*i + 1)
-			pt.height = uint64(pt.base*i + i)
-			pt.hypotenuse = uint64(math.Sqrt(float64(pt.base*pt.base + pt.height*pt.height)))
-			out <- pt
+			// Michael Stifel's sequence
+			pt1 := new(PythogoreanTriplet)
+			pt1.Base = uint64(2*i + 1)
+			pt1.Height = uint64(pt1.Base*i + i)
+			pt1.Hypotenuse = pt1.Height + 1
+			out <- pt1
+
+			// Jacques Ozanam's sequence
+			pt2 := new(PythogoreanTriplet)
+			pt2.Height = uint64(4*i + 4)
+			pt2.Base = pt2.Height*i + pt2.Height - 1
+			pt2.Hypotenuse = pt2.Base + 2
+			out <- pt2
 		}
 	}()
 	return out
