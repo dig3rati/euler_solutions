@@ -25,6 +25,24 @@ func TestFibonacciSeq(t *testing.T) {
 	}
 }
 
+func TestFibonacciContSeq(t *testing.T) {
+	cases := []struct {
+		want []*big.Int
+	}{
+		{[]*big.Int{big.NewInt(1), big.NewInt(1), big.NewInt(2),
+			big.NewInt(3), big.NewInt(5), big.NewInt(8)}},
+	}
+	for _, c := range cases {
+		out := FibonacciContSeq()
+		for _, n := range c.want {
+			e := <-out
+			if n.Cmp(e) != 0 {
+				t.Errorf("Failed to check case: %+v\n", c)
+			}
+		}
+	}
+}
+
 func TestCircularNumbers(t *testing.T) {
 	cases := []struct {
 		n    uint64

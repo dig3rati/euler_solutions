@@ -25,6 +25,20 @@ func FibonacciSeq(start uint64, second uint64, max uint64) chan uint64 {
 	return out
 }
 
+// Generates a continuous fibonacci sequence
+func FibonacciContSeq() chan *big.Int {
+	out := make(chan *big.Int)
+	go func() {
+		first, second := big.NewInt(1), big.NewInt(1)
+		out <- first
+		for f, s := first, second; true; f, s = s, f {
+			out <- f
+			s.Add(f, s)
+		}
+	}()
+	return out
+}
+
 // Returns the circular numbers for a given number
 func CircularNumbers(n uint64) []uint64 {
 	bytes := []byte(fmt.Sprintf("%d", n))
